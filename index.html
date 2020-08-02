@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GH Page test</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script lang="js">
+    const getDate = () => {
+      const millisecondsDiff = Number(new Date("08-15-2020")) - Number(new Date())
+      if (millisecondsDiff < 0)
+        return "NICE"
+      const days = Math.floor(millisecondsDiff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((millisecondsDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((millisecondsDiff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((millisecondsDiff % (1000 * 60)) / 1000);
+      return `<span style="padding: 0px 20px;">${days}d&nbsp;${hours}h&nbsp;${minutes}m&nbsp;${seconds}s</span>`
+    };
+
+    $(document).ready(() => {
+      setInterval(() => $('#time-data').html(getDate()), 1000)
+    })
+  </script>
+  <style>
+      #main-cont {
+          background: #302929;
+          position: fixed;
+          padding: 0;
+          margin: 0;
+
+          top: 0;
+          left: 0;
+
+          width: 100%;
+          height: 100%;
+      }
+
+      #time-data {
+          color: white;
+          left: 50%;
+          top: 30%;
+          position: absolute;
+          transform: translate(-50%, -50%);
+          font-size: 130px;
+      }
+  </style>
+</head>
+<body>
+<div id="main-cont">
+  <p id="time-data">
+
+  </p>
+</div>
+</body>
+</html>
